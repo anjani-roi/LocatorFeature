@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><EventFramework xmlns:dis="http://attunedlabs.com/internalevents/Dispatcher" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="eventframework.xsd">
+  <DispatchChanels>
+    <DispatchChanel description="file store" id="FILE_STORE" isEnabled="true">
+      <ChanelImplementation beanRefid="fileStoreDispatcher" fqcn="com.attunedlabs.eventframework.dispatcher.chanel.FileStoreDispatchChanel"/>
+      <ChanelConfiguration>{"filename":"EventDispatchChanel.txt","filepath":"C:\\ROI\\RoiLogDisparcher"}</ChanelConfiguration>
+    </DispatchChanel>
+  </DispatchChanels>
+  <SystemEvents>
+    <SystemEvent description="Standard Event for failure of every service Type" id="SERVICE_COMPLETION_FAILURE" isEnabled="true">
+      <CamelSystemEventBuilder beanRefid="ServiceEventBuilder" fqcn="com.attunedlabs.eventframework.camel.eventproducer.ServiceCompletionFailureEventBuilder"/>
+      <dis:EventDispatchers>
+        <dis:EventDispatcher>
+          <dis:DispatchChanelId>FILE_STORE</dis:DispatchChanelId>
+          <dis:EventTransformation Type="CUSTOM">
+            <dis:CustomTransformer
+							fqcn="com.attunedlabs.eventframework.dispatcher.transformer.GenericLeapEventJsonTransformer" />
+          </dis:EventTransformation>
+        </dis:EventDispatcher>
+      </dis:EventDispatchers>
+    </SystemEvent>
+    <SystemEvent description="Standard Event for success of every service Type" id="SERVICE_COMPLETION_SUCCESS" isEnabled="true">
+      <CamelSystemEventBuilder beanRefid="ServiceEventBuilder" fqcn="com.attunedlabs.eventframework.camel.eventproducer.ServiceCompletionFailureEventBuilder"/>
+      <dis:EventDispatchers>
+        <dis:EventDispatcher>
+          <dis:DispatchChanelId>FILE_STORE</dis:DispatchChanelId>
+          <dis:EventTransformation Type="CUSTOM">
+            <dis:CustomTransformer
+							fqcn="com.attunedlabs.eventframework.dispatcher.transformer.GenericLeapEventJsonTransformer" />
+          </dis:EventTransformation>
+        </dis:EventDispatcher>
+      </dis:EventDispatchers>
+    </SystemEvent>
+  </SystemEvents>
+</EventFramework>

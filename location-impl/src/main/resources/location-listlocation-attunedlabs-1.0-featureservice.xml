@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><FeaturesServiceInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="featureService.xsd">
+  <Features featureGroup="location">
+    <Feature enabled="true" featureName="listlocation" interfaceName="" version="1.0">
+      <Service Description="listmicroloc" enabled="true" name="listmicroloc" vendorName="attunedlabs">
+        <GenericRestEndpoint httpMethod="GET" urlMappingScheme="location/listlocation/listmicroloc">listlocation-listmicroloc-leap-IR</GenericRestEndpoint>
+        <ConcreteSoapEndpoint wsdl="auto-generated">listlocation-listmicroloc-leap-IR</ConcreteSoapEndpoint>
+      </Service>
+    </Feature>
+  </Features>
+</FeaturesServiceInfo>

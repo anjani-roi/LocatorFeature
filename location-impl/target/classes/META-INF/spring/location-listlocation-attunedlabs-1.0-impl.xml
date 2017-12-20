@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:cxf="http://camel.apache.org/schema/cxf" xmlns:http="http://cxf.apache.org/transports/http/configuration"
+	xmlns:sec="http://cxf.apache.org/configuration/security" xmlns:soap="http://cxf.apache.org/bindings/soap"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation=" http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans.xsd http://camel.apache.org/schema/spring  http://camel.apache.org/schema/spring/camel-spring.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://camel.apache.org/schema/cxf  http://camel.apache.org/schema/cxf/camel-cxf.xsd http://cxf.apache.org/transports/http/configuration http://cxf.apache.org/schemas/configuration/http-conf.xsd http://cxf.apache.org/configuration/security  http://cxf.apache.org/schemas/configuration/security.xsd">
+
+	<import resource="spring-context.xml" />
+
+	<bean id="createFractional" class="com.getusroi.location.processor.bean.CreateFractional" />
+	<bean id="createGeoGroup" class="com.getusroi.location.processor.bean.CreateGeoGroup" />
+	<bean id="createGeoLoc" class="com.getusroi.location.processor.bean.CreateGeoLoc" />
+	<bean id="createInstance" class="com.getusroi.location.processor.bean.CreateInstance" />
+	<bean id="createInstanceMap" class="com.getusroi.location.processor.bean.CreateInstanceMap" />
+	<bean id="createLocationGroup"
+		class="com.getusroi.location.processor.bean.CreateLocationGroup" />
+	<bean id="createLocationGroupAsgn"
+		class="com.getusroi.location.processor.bean.CreateLocationGroupAsgn" />
+	<bean id="createMicroLo" class="com.getusroi.location.processor.bean.CreateMicroLoc" />
+	<bean id="createOwner" class="com.getusroi.location.processor.bean.CreateOwner" />
+	<bean id="createTenant" class="com.getusroi.location.processor.bean.CreateTenant" />
+	<bean id="createTenantMap" class="com.getusroi.location.processor.bean.CreateTenantMap" />
+
+	<bean id="locationValidation" class="com.getusroi.location.validation.LocationValidation" />
+
+	<bean id="listMicroLocations" class="com.getusroi.location.processor.bean.ListMicroLoc" />
+	<bean id="listLocationGroups" class="com.getusroi.location.processor.bean.ListLocationGroup" />
+
+	<routeContext xmlns="http://camel.apache.org/schema/spring"
+		id="location-listlocation-implementation-route">
+		
+		<!-- <route id="listmicroloc">
+			<from uri="direct:listlocation-listmicroloc-leap-IR" />
+			<log message="listmicroloc body  ==&gt; ${body}" />
+		</route> -->
+		
+		<!-- List micro locations routes -->
+		
+		<route id="listlocation-listmicroloc-leap-IR">
+			<from uri="direct:listlocation-listmicroloc-leap-IR" />
+			<to uri="bean:listMicroLocations" />
+		</route>
+		
+	</routeContext>
+</beans>
