@@ -1,16 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?><beans xmlns="http://www.springframework.org/schema/beans" xmlns:camel="http://camel.apache.org/schema/spring" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation=" http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://camel.apache.org/schema/spring   http://camel.apache.org/schema/spring/camel-spring.xsd">
   <routeContext xmlns="http://camel.apache.org/schema/spring" id="location-listlocation-execution-route">
+    
+    <!-- Create Location Group routes -->
+		
+	<!-- <route id="listlocation-createlocationgroup-TR">
+		<from uri="direct:listlocation-createlocationgroup-TR" />
+		<log message="inside the listlocation-createlocationgroup-TR route"/>
+		<to uri="direct:nextRoute" />
+	</route> -->
+	
     <route id="listlocation-listmicroloc-TR">
       <from uri="direct:listlocation-listmicroloc-TR"/>
       <log message="inside the listlocation-listmicroloc-TR route"/>
-      <to uri="direct:listlocation-listmicroloc-ER"/>
+      <to uri="direct:nextRoute" />
     </route>
-    <route id="listlocation-listmicroloc-ER">
-      <from uri="direct:listlocation-listmicroloc-ER"/>
-      <log message="inside the listlocation-listmicroloc-ER route"/>
-      <to uri="bean:executionFeatureDynamic?method=route"/>
-      <log message="Implementation Route:   ${in.header.implroute}"/>
-      <toD uri="direct:${in.header.implroute}"/>
+    
+    <route id="listlocation-listlocationgroup-TR">
+      <from uri="direct:listlocation-listlocationgroup-TR"/>
+      <log message="inside the listlocation-listlocationgroup-TR route"/>
+      <to uri="direct:nextRoute" />
     </route>
+    
+    <!-- Next implementation route -->
+
+	<route id="listlocation-execution-route">
+		<from uri="direct:nextRoute" />
+		<log message="inside the listlocation-execution-route route" />
+		<to uri="bean:executionFeatureDynamic?method=route" />
+		<log message="Implementation Route:   ${in.header.implroute}" />
+		<toD uri="direct:${in.header.implroute}" />
+	</route>
+    
   </routeContext>
 </beans>

@@ -5,6 +5,10 @@
         <GenericRestEndpoint httpMethod="GET" urlMappingScheme="location/listlocation/listmicroloc">listlocation-listmicroloc-leap-IR</GenericRestEndpoint>
         <ConcreteSoapEndpoint wsdl="auto-generated">listlocation-listmicroloc-leap-IR</ConcreteSoapEndpoint>
       </Service>
+      <Service Description="List location group" enabled="true" name="listlocationgroup" vendorName="attunedlabs">
+        <GenericRestEndpoint httpMethod="GET" urlMappingScheme="location/listlocation/listlocationgroup">listlocation-listlocationgroup-leap-IR</GenericRestEndpoint>
+        <ConcreteSoapEndpoint wsdl="auto-generated">listlocation-listlocationgroup-leap-IR</ConcreteSoapEndpoint>
+      </Service>
     </Feature>
   </Features>
 </FeaturesServiceInfo>

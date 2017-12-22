@@ -29,16 +29,18 @@
 	<routeContext xmlns="http://camel.apache.org/schema/spring"
 		id="location-listlocation-implementation-route">
 		
-		<!-- <route id="listmicroloc">
-			<from uri="direct:listlocation-listmicroloc-leap-IR" />
-			<log message="listmicroloc body  ==&gt; ${body}" />
-		</route> -->
-		
 		<!-- List micro locations routes -->
 		
 		<route id="listlocation-listmicroloc-leap-IR">
 			<from uri="direct:listlocation-listmicroloc-leap-IR" />
 			<to uri="bean:listMicroLocations" />
+		</route>
+		
+		<!-- List location group routes -->
+		
+		<route id="listlocation-listlocationgroup-leap-IR">
+			<from uri="direct:listlocation-listlocationgroup-leap-IR" />
+			<to uri="bean:listLocationGroups" />
 		</route>
 		
 	</routeContext>
